@@ -33,6 +33,6 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
 
     @Override
     public void startWorking(List<? extends T> machines) {
-        machines.forEach(Machine::doWork);
+        machines.forEach(machine -> machine.doWork());
     }
 }
