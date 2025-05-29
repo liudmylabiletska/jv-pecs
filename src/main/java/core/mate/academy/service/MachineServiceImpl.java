@@ -10,18 +10,16 @@ import java.util.List;
 public class MachineServiceImpl<T extends Machine> implements MachineService<T> {
 
     @Override
-    public List<T> getAll(Class<T> type) {
-        List<? extends Machine> machines;
+    public <U extends T> List<U> getAll(Class<U> type) {
+        List<U> result = new ArrayList<>();
         if (type == Bulldozer.class) {
-            machines = new BulldozerProducer().get();
+            result.add(type.cast(new Bulldozer()));
         } else if (type == Excavator.class) {
-            machines = new ExcavatorProducer().get();
+            result.add(type.cast(new Excavator()));
         } else if (type == Truck.class) {
-            machines = new TruckProducer().get();
-        } else {
-            return List.of();
+            result.add(type.cast(new Truck()));
         }
-        return new ArrayList<>((List<T>) machines);
+        return result;
     }
 
     @Override
@@ -33,6 +31,6 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
 
     @Override
     public void startWorking(List<? extends T> machines) {
-        machines.forEach(machine -> machine.doWork());
+        machines.forEach(Machine::doWork);
     }
 }
