@@ -37,3 +37,7 @@ public interface MachineService<T extends Machine> {
     */
     void startWorking(List<? extends T> machines);
 }
+
+
+
+

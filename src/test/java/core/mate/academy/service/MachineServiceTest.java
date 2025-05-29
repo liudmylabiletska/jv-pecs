@@ -22,10 +22,10 @@ public class MachineServiceTest {
     }
 
     @Test
-    public void getAll_bulldozerType() {
-        List<Machine> actual = machineService.getAll(Bulldozer.class);
+     public void getAll_bulldozerType() {
+        List<Bulldozer> actual = machineService.getAll(Bulldozer.class);
         assertEquals("The list should contain elements of type Bulldozer",
-            Bulldozer.class, actual.get(0).getClass());
+                Bulldozer.class, actual.get(0).getClass());
     }
 
     @Test
