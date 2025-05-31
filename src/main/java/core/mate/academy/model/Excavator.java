@@ -14,9 +14,4 @@ public class Excavator extends Machine {
     public void setBucketCapacity(int bucketCapacity) {
         this.bucketCapacity = bucketCapacity;
     }
-
-    @Override
-    public void doWork() {
-        System.out.println("Excavator is working with bucket capacity: " + bucketCapacity);
-    }
 }
