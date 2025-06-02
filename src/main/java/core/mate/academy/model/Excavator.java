@@ -5,7 +5,11 @@ package core.mate.academy.model;
  * Do not remove no-args constructor
  */
 public class Excavator extends Machine {
-    private int bucketCapacity;  // унікальне поле
+    private int bucketCapacity;
+
+    public Excavator() {
+        super();
+    }
 
     public int getBucketCapacity() {
         return bucketCapacity;
@@ -17,6 +21,6 @@ public class Excavator extends Machine {
 
     @Override
     public void doWork() {
-        System.out.println("Excavator is digging");
+        System.out.println("Excavator is working");
     }
 }
