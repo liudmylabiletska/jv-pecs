@@ -10,14 +10,14 @@ import java.util.List;
 public class MachineServiceImpl implements MachineService<Machine> {
 
     @Override
-    public <U extends Machine> List<U> getAll(Class<U> type) {
-        List<U> result = new ArrayList<>();
+    public List<? extends Machine> getAll(Class<? extends Machine> type) {
+        List<Machine> result = new ArrayList<>();
         if (type == Bulldozer.class) {
-            result.add(type.cast(new Bulldozer()));
+            result.add(new Bulldozer());
         } else if (type == Excavator.class) {
-            result.add(type.cast(new Excavator()));
+            result.add(new Excavator());
         } else if (type == Truck.class) {
-            result.add(type.cast(new Truck()));
+            result.add(new Truck());
         }
         return result;
     }
