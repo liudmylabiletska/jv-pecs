@@ -2,14 +2,13 @@ package core.mate.academy.service.producer;
 
 import core.mate.academy.model.Truck;
 import core.mate.academy.service.MachineProducer;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TruckProducer implements MachineProducer<Truck> {
     @Override
     public List<Truck> get() {
-        List<Truck> trucks = new ArrayList<>();
-        trucks.add(new Truck());
-        return trucks;
+        // Повертаємо список з трьох вантажівок
+        return Arrays.asList(new Truck(), new Truck(), new Truck());
     }
 }
