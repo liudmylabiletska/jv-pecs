@@ -4,40 +4,40 @@ import core.mate.academy.model.Bulldozer;
 import core.mate.academy.model.Excavator;
 import core.mate.academy.model.Machine;
 import core.mate.academy.model.Truck;
-import core.mate.academy.service.producer.BulldozerProducer;
-import core.mate.academy.service.producer.ExcavatorProducer;
-import core.mate.academy.service.producer.TruckProducer;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MachineServiceImpl<T extends Machine> implements MachineService<T> {
-    private final BulldozerProducer bulldozerProducer = new BulldozerProducer();
-    private final ExcavatorProducer excavatorProducer = new ExcavatorProducer();
-    private final TruckProducer truckProducer = new TruckProducer();
+public class MachineServiceImpl implements MachineService {
+    private final List<Machine> allMachines = new ArrayList<>();
 
-    @SuppressWarnings("unchecked")
     @Override
-    public List<T> getAll(Class<? extends T> type) {
-        if (type.equals(Bulldozer.class)) {
-            return (List<T>) bulldozerProducer.get();
-        } else if (type.equals(Excavator.class)) {
-            return (List<T>) excavatorProducer.get();
-        } else if (type.equals(Truck.class)) {
-            return (List<T>) truckProducer.get();
+    public List<? extends Machine> getAll(Class<? extends Machine> type) {
+        List<Machine> result = new ArrayList<>();
+        for (Machine machine : allMachines) {
+            if (type.isInstance(machine)) {
+                result.add(machine);
+            }
         }
-        return Collections.emptyList();
+        return result;
     }
 
     @Override
-    public void fill(List<? super T> machines, T value) {
-        for (int i = 0; i < machines.size(); i++) {
-            machines.set(i, value);
+    public void fill(List<? super Machine> machines, Class<? extends Machine> type) {
+        // Додаємо 3 машини заданого типу
+        for (int i = 0; i < 3; i++) {
+            if (type.equals(Bulldozer.class)) {
+                machines.add(new Bulldozer());
+            } else if (type.equals(Excavator.class)) {
+                machines.add(new Excavator());
+            } else if (type.equals(Truck.class)) {
+                machines.add(new Truck());
+            }
         }
     }
 
     @Override
-    public void startWorking(List<? extends T> machines) {
-        for (T machine : machines) {
+    public void startWorking(List<? extends Machine> machines) {
+        for (Machine machine : machines) {
             machine.doWork();
         }
     }
