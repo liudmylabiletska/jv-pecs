@@ -16,7 +16,6 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
     private final MachineProducer<Excavator> excavatorProducer = new ExcavatorProducer();
     private final MachineProducer<Truck> truckProducer = new TruckProducer();
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<T> getAll(Class<? extends T> type) {
         List<? extends T> machines;

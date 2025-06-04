@@ -5,11 +5,22 @@ package core.mate.academy.model;
  * Do not remove no-args constructor
  */
 public class Excavator extends Machine {
+    private int bucketCapacity;
+
     public Excavator() {
+        super();
+    }
+
+    public int getBucketCapacity() {
+        return bucketCapacity;
+    }
+
+    public void setBucketCapacity(int bucketCapacity) {
+        this.bucketCapacity = bucketCapacity;
     }
 
     @Override
     public void doWork() {
-        System.out.println("Excavator started to work");
+        System.out.println("Excavator is working");
     }
 }

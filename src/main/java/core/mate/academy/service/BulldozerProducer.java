@@ -1,15 +1,13 @@
 package core.mate.academy.service.producer;
 
 import core.mate.academy.model.Bulldozer;
-import core.mate.academy.service.MachineProducer;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class BulldozerProducer implements MachineProducer<Bulldozer> {
     @Override
     public List<Bulldozer> get() {
-        List<Bulldozer> bulldozers = new ArrayList<>();
-        bulldozers.add(new Bulldozer());
-        return bulldozers;
+        // Provide dummy data or fetch actual data
+        return new ArrayList<>();
     }
 }
