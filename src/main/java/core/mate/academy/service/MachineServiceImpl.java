@@ -7,28 +7,25 @@ import core.mate.academy.model.Truck;
 import core.mate.academy.service.producer.BulldozerProducer;
 import core.mate.academy.service.producer.ExcavatorProducer;
 import core.mate.academy.service.producer.TruckProducer;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MachineServiceImpl<T extends Machine> implements MachineService<T> {
-    private final MachineProducer<Bulldozer> bulldozerProducer = new BulldozerProducer();
-    private final MachineProducer<Excavator> excavatorProducer = new ExcavatorProducer();
-    private final MachineProducer<Truck> truckProducer = new TruckProducer();
+    private final BulldozerProducer bulldozerProducer = new BulldozerProducer();
+    private final ExcavatorProducer excavatorProducer = new ExcavatorProducer();
+    private final TruckProducer truckProducer = new TruckProducer();
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<T> getAll(Class<? extends T> type) {
-        List<? extends T> machines;
-        if (type == Bulldozer.class) {
-            machines = (List<? extends T>) bulldozerProducer.get();
-        } else if (type == Excavator.class) {
-            machines = (List<? extends T>) excavatorProducer.get();
-        } else if (type == Truck.class) {
-            machines = (List<? extends T>) truckProducer.get();
-        } else {
-            return Collections.emptyList();
+        if (type.equals(Bulldozer.class)) {
+            return (List<T>) bulldozerProducer.get();
+        } else if (type.equals(Excavator.class)) {
+            return (List<T>) excavatorProducer.get();
+        } else if (type.equals(Truck.class)) {
+            return (List<T>) truckProducer.get();
         }
-        return new ArrayList<>(machines);
+        return Collections.emptyList();
     }
 
     @Override
